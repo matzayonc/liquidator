@@ -31,13 +31,15 @@ const main = async () => {
 
   console.log(`Using wallet: ${wallet.publicKey}`)
 
-  while (true) {
+  let i = 0
+  while (1 < 20) {
     try {
       await stakingLoop(exchange, wallet)
       await vaultLoop(exchange, wallet)
     } catch (error) {
       console.error(error)
       await sleep(2000)
+      i++
       continue
     }
     break
