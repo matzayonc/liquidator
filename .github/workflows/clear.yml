@@ -1,0 +1,12 @@
+name: liquidation schedule
+
+on:
+  workflow_dispatch:
+    branches: [master, vaults]
+
+jobs:
+  stop:
+    runs-on: ubuntu-latest
+    steps:
+     - name: Delete workflow runs
+      uses: Mattraks/delete-workflow-runs@v2.0.3
