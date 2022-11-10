@@ -37,6 +37,7 @@ const main = async () => {
       await vaultLoop(exchange, wallet)
     } catch (error) {
       console.error(error)
+      await sleep(2000)
       continue
     }
     break
