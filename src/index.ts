@@ -31,9 +31,16 @@ const main = async () => {
 
   console.log(`Using wallet: ${wallet.publicKey}`)
 
-  await stakingLoop(exchange, wallet)
-  await vaultLoop(exchange, wallet)
-
+  while (true) {
+    try {
+      await stakingLoop(exchange, wallet)
+      await vaultLoop(exchange, wallet)
+    } catch (error) {
+      console.error(error)
+      continue
+    }
+    break
+  }
   if (!insideCI) {
     setInterval(() => stakingLoop(exchange, wallet), SCAN_INTERVAL)
     await sleep(SCAN_INTERVAL / 2)
