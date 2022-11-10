@@ -76,7 +76,7 @@ export const liquidate = async (
 
   console.log(green('Liquidating..'))
 
-  const liquidatedEntry = exchangeAccount.account.collaterals.find(c => c.index == 0)
+  const liquidatedEntry = exchangeAccount.account.collaterals.find(c => c.index == 1)
   if (!liquidatedEntry) return false
   const liquidatedCollateral = assetsList.collaterals[liquidatedEntry.index]
   const { liquidationRate } = state

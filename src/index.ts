@@ -35,7 +35,7 @@ const main = async () => {
   while (1 < 20) {
     try {
       await stakingLoop(exchange, wallet)
-      await vaultLoop(exchange, wallet)
+      // await vaultLoop(exchange, wallet)
     } catch (error) {
       console.error(error)
       await sleep(2000)
