@@ -76,7 +76,8 @@ export const liquidate = async (
 
   console.log(green('Liquidating..'))
 
-  const liquidatedEntry = exchangeAccount.account.collaterals[0]
+  const liquidatedEntry = exchangeAccount.account.collaterals.find(c => c.index == 0)
+  if (!liquidatedEntry) return false
   const liquidatedCollateral = assetsList.collaterals[liquidatedEntry.index]
   const { liquidationRate } = state
 
@@ -199,7 +200,7 @@ export const vaultsToPrices = async (vaults: Map<string, Vault>, connection: Con
 
 export const getConnection = (network: Network) => {
   return network === Network.MAIN
-    ? new Connection('https://ssc-dao.genesysgo.net', 'recent')
+    ? new Connection('https://solana-api.projectserum.com/', 'recent')
     : new Connection('https://psytrbhymqlkfrhudd.dev.genesysgo.net:8899', {
         wsEndpoint: 'wss://psytrbhymqlkfrhudd.dev.genesysgo.net:8900',
         commitment: 'recent'
